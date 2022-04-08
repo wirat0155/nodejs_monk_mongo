@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Add product</title>
+    <script src="https://cdn.ckeditor.com/4.18.0/standard/ckeditor.js"></script>
+  </head>
+  <body>
+    <%- include menu %>
+
+    <div class="container">
+      <h1 align="center">Add product</h1>
+      <%- messages() %>
+      <% if (locals.errors) { %>
+      <ul class="alert alert-danger px-5">
+        <% Object.values(errors).forEach(function(error){ %>
+            <li><%= error.msg %></li>
+        <% }) %>
+      </ul>
+      <% } %>
+
+      <form action="/product/add" method="POST">
+        <div class="mb-3">
+          <label for="name" class="form-label">Product name</label>
+          <input type="text" class="form-control" id="name" name="name">
+        </div>
+        <div class="mb-3">
+          <label for="description" class="form-label">Product description</label>
+          <textarea class="form-control" id="description" name="description"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+
+    <script>
+      CKEDITOR.replace('description');
+      $(document).ready(function(){
+        $('#messages').addClass('alert alert-success');
+      });
+    </script>
+  </body>
+</html>
