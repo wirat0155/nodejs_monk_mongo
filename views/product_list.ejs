@@ -1,0 +1,33 @@
+<% if (locals.products) { %>
+    <% if (products.length > 0) { %>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th style="width: 10%">ลำดับ</th>
+                    <th>ชื่อสินค้า</th>
+                    <th>ดำเนินการ</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% Object.values(products).forEach(function(product, index) { %>
+                    <tr>
+                        <td><%= index + 1 %></td>
+                        <td><%= product.name %></td>
+                        <td>
+                            <a class="btn btn-warning m-1" href="/product/edit/<%= product._id%>">
+                                Edit
+                            </a>&nbsp;
+                            <a class="btn btn-danger m-1" href="/product/delete/<%= product._id %>">
+                                Remove
+                            </a>
+                        </td>
+                    </tr>
+                <% })%>
+            </tbody>
+        </table>
+    <% } else { %>
+        <p>No product found. go <a href="/product/add">here</a> to add product</p>
+    <% } %>
+<% } else { %>
+    <p>No product found. go <a href="/product/add">here</a> to add product</p>
+<% } %>

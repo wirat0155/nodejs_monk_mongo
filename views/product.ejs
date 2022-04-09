@@ -7,9 +7,20 @@
     <%- include menu %>
     
     <div class="container">
-      <h1>Welcome to Product Stock</h1>
-      <a href="/">Back</a>
+      <h1>Product Stock</h1>
+      <%- messages() %>
+      <a class="btn btn-primary" href="/product/add">Add product</a><br/>
+    </div>
+
+    <div class="container">
+      <%- include product_list %>
     </div>
     
   </body>
+
+  <script>
+    $(document).ready(function(){
+      $('#messages').addClass('alert alert-success');
+    });
+  </script>
 </html>

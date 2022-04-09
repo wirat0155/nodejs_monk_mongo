@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Add product</title>
+    <script src="https://cdn.ckeditor.com/4.18.0/standard/ckeditor.js"></script>
+  </head>
+  <body>
+    <%- include menu %>
+
+    <div class="container">
+      <h1 align="center">Edit product</h1>
+      <%- messages() %>
+
+      <form action="/product/edit" method="POST">
+        <input type="text" name="_id" value="<%= product._id %>" hidden>
+        <div class="mb-3">
+          <label for="name" class="form-label">Product name</label>
+          <input type="text" class="form-control" id="name" name="name" value="<%= product.name %>">
+        </div>
+        <div class="mb-3">
+          <label for="description" class="form-label">Product description</label>
+          <textarea class="form-control" id="description" name="description"><%= product.description %></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+      </form>
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            $('#messages').addClass('alert alert-danger');
+        });
+        CKEDITOR.replace('description');
+    </script>
+  </body>
+</html>
